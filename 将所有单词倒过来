@@ -1,0 +1,66 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+void reverse(char* left, char* right) {
+	while (left < right) {
+		char temp = *left;
+		*left = *right;
+		*right = temp;
+
+		left++;
+		right--;
+	}
+}
+int	main() {
+	//int i = 0;
+	//char str[100] = "i like bejing. c hello world!";
+	char str[100] = { 0 };
+	gets(str);
+	//int sz = sizeof(str) / sizeof(str[0]);
+	//int mid = sz - 2;
+	//int count = 0;
+	//char temp = 0;
+	//printf("%d\n", strlen(str));
+	//while (i<sz-1) {
+	//	if (str[0] != ' ') {
+	//		temp = str[0];
+	//		for (int j = 0; j <= mid-1; j++) {
+	//			str[j] = str[j + 1];
+	//		}
+	//		str[mid] = temp;
+	//		count++;
+	//	}
+	//	else {
+	//		mid = mid - count;
+	//		count = 0;
+	//		temp = str[0];
+	//		for (int j = 0; j <= mid - 1; j++) {
+	//			str[j] = str[j + 1];
+	//		}
+	//		str[mid] = temp;
+	//		mid--;
+	//	}
+	//	i++;
+	//}
+	char* start = str;
+	char* end = start;
+	reverse(str,str+strlen(str)-1);
+	printf("%s\n", str);
+	while (*start) {
+		end = start;
+		while (1) {
+			if (*end != ' ' && *end != '\0') {
+				end++;
+			}
+			else
+				break;
+		}
+		reverse(start, end - 1);
+		if (*end == ' ')
+			start = end + 1;
+		else
+			start = end;
+	}
+	printf("%s\n", str);
+
+	return 0;
+}
