@@ -1,0 +1,42 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+int sort(const void* x, const void* y) {
+	return *(int*)x - *(int*)y;
+}
+struct Stu {
+	char name[20];
+	int age;
+};
+
+int sort_stu_age(const void* e1,const void* e2) {
+	return ((struct Stu*)e1)->age - ((struct Stu*)e2)->age;
+}
+
+int sort_stu_name(const void* e1, const void* e2) {
+	return strcmp(((struct Stu*)e1)->name, ((struct Stu*)e2)->name);
+}
+
+int	main() {
+	int arr[] = { 9,8,7,6,5,4,3,2,1,0 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	qsort(arr,sz,sizeof(arr[0]), sort);
+	//for (int i = 0; i < sz; i++) {
+	//	printf("%d\n",arr[i]);
+	//}
+
+	struct Stu s[] = { {"laoliu",20}, {"zhangsan",31},{"wangba",23},{"idwadw",25} };
+	sz = sizeof(s) / sizeof(s[0]);
+	for (int i = 0; i < sz; i++) {
+		printf("%s %d\n", s[i].name,s[i].age);
+	}
+	printf("\n");
+	//qsort(s, sz, sizeof(s[0]), sort_stu_age);
+	qsort(s, sz, sizeof(s[0]), sort_stu_name);
+	for (int i = 0; i < sz; i++) {
+		printf("%s %d\n", s[i].name, s[i].age);
+	}
+
+	return 0;	
+}
