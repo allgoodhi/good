@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include <stdio.h>
+
+int add(int x,int y) {
+	return x + y;
+}
+int sub(int x, int y) {
+	return x - y;
+}
+int mul(int x, int y) {
+	return x * y;
+}
+int div(int x, int y) {
+	return x / y;
+}
+int calc(int (*pa)(int, int)) {
+	int x = 0;
+	int y = 0;
+	scanf("%d %d", &x, &y);
+	return pa(x,y);
+}
+int	main() {
+	int input = 0;
+	int ret = 0;
+	//int(*pa[5])(int, int) = {0,add,sub,mul,div};
+	do {
+		printf("请输入功能>");
+		scanf("%d", &input);
+		switch (input)
+		{
+		case 0: printf("退出!\n", ret);
+			break;
+		case 1: ret = calc(add);
+			printf("%d\n",ret);
+			break;
+		case 2: ret = calc(sub);
+			printf("%d\n", ret);
+			break;
+		case 3: ret = calc(mul);
+			printf("%d\n", ret);
+			break;
+		case 4: ret = calc(div);
+			printf("%d\n", ret);
+			break;
+		default: printf("输入错误，请重新输入\n", ret);
+			break;
+		}
+		
+	} while (input);
+
+	return 0;	
+}
